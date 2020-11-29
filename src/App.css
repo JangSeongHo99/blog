@@ -5,8 +5,14 @@ body {
 	font-family:
 		'nanumsquare';
 }
+
+.modal {
+	margin-top: 20px;
+	padding: 20px;
+	background: #eee;
+}
 .black-nav {
-	background: black;
+	background: blue;
 	width: 100%;
 	display: flex;
 	color: white;
