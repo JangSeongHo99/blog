@@ -54,6 +54,17 @@ function App() {
 			  ? <Modal></Modal>
 			  : null
 		  }
+		 {
+			  글제목.map((title) => {
+				  return (	
+					  <div className="list">
+						<h3> { title }</h3>
+						<p>2018.12.15</p>
+						<hr/>
+					</div>
+					  )
+			  })
+		  }
     </div>
   );
 }
