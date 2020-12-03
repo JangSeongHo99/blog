@@ -15,7 +15,7 @@ function App() {
 	let [modal, modal변경] = useState(false);
 	let [menu, menu변경] = useState(false);
 	let [제목순서, 제목순서변경] = useState(0);
-	
+	let [입력값, 입력값변경] = useState('');
 	function 제목바꾸기(){
 		var newArray = [...글제목];
 		newArray[0] = "여자코트 추천";
@@ -45,23 +45,32 @@ function App() {
 			</IconButton>
 		</div>
 		<button onClick={ 제목바꾸기 }> 버튼 </button>
-		  <button onClick={()=>{modal변경(!modal)}}> 열고 닫기 </button>
-		 {
+		<button onClick={()=>{modal변경(!modal)}}> 열고 닫기 </button>
+		{
 			  글제목.map((title, index) => {
 				  return (	
-					  <div className="list">
+					  <div className="list" key = {index}>
 						  <h3 onClick={()=>{제목순서변경(index)}}> { title } <span onClick={()=>따봉변경(따봉[index] + 1)}>👍</span> { 따봉[index] } </h3> 
 						<p>2018.12.15</p>
 						<hr/>
 					</div>
 					  )
 			  })
-		  }
+		}
+		  
 		{
 			  modal === true
 			  ? <Modal 글제목 = {글제목} 제목순서 = {제목순서}></Modal>
 			  : null
-		  }
+		}
+		<div className="publish">
+			<input onChange={ (e)=>{ 입력값변경(e.target.value)}}/>
+			<button onClick={ () =>{
+					var arrayCopy = [...글제목];
+					arrayCopy.unshift(입력값);
+					글제목변경(arrayCopy);
+			}}>저장</button>
+		</div>
     </div>
   );
 }
@@ -86,4 +95,11 @@ function Menu(props){
 	)
 }
 
+function Write(props){
+	return(
+		<div className="modal">
+			<h2>{props.입력값}</h2>
+		</div>
+	)
+}
 export default App;
