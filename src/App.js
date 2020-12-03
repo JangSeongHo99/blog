@@ -63,6 +63,7 @@ function App() {
 			  ? <Modal 글제목 = {글제목} 제목순서 = {제목순서}></Modal>
 			  : null
 		}
+		<Profile />
 		<div className="publish">
 			<input onChange={ (e)=>{ 입력값변경(e.target.value)}}/>
 			<button onClick={ () =>{
@@ -102,4 +103,27 @@ function Write(props){
 		</div>
 	)
 }
+
+class Profile extends React.Component {
+	//state는 constructor 안에 작성
+	constructor(){
+		super();
+		this.state = { name : 'Kim', age : 30 }
+	}
+
+	changeName = () => {
+		this.setState({name:'Park'})
+	}
+		
+	render(){
+		return (
+			<div>
+				<h3>프로필입니다</h3>
+				<p>저는 { this.state.name } ~~입니다.</p>
+				<button onclick = { this.changeName }>버튼</button>
+			</div>
+		)
+	}
+}
+
 export default App;
